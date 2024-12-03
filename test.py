@@ -21,6 +21,16 @@ def create_a_document():
     return document["UUID"], document
 
 def save_a_document(collection, document):
+    """
+    Saves a document to the MongoDB collection.
+
+    Args:
+        collection: MongoDB collection to insert the document.
+        document: The document to save.
+
+    Returns:
+        The ID of the inserted document.
+    """
     answer = collection.insert_one(document)
     return answer.inserted_id
 
