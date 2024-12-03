@@ -109,6 +109,20 @@ def test_should_update_a_document():
     updated_document = update_a_document(collection, uuid_id, "age", 25)
     assert updated_document["age"] == 25
 
+def test_should_delete_a_document():
+    client = MongoClient("mongodb+srv://ikmclassof22:test@cluster0.vtg6m.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", tlsAllowInvalidCertificates=True)
+    db = client['sample_mflix']
+    collection = db['users']
+
+    uuid_id, document = create_a_document()
+    saved_document = save_a_document(collection, document)
+
+    delete = delete_a_document(collection, uuid_id)
+    assert delete == 1
+
+    verify = find_a_document_uuid(collection, uuid_id)
+    assert verify is None
+
 
 
 
