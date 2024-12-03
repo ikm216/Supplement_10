@@ -1,4 +1,5 @@
 from pymongo import MongoClient
+from pymongo import ReturnDocument
 import uuid
 
 client = MongoClient("mongodb+srv://ikmclassof22:test@cluster0.vtg6m.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", tlsAllowInvalidCertificates=True)
@@ -47,6 +48,10 @@ def find_a_document_uuid(collection, uuid_id):
     """
      return collection.find_one({"UUID": uuid_id})
 
+def update_a_document(collection, uuid_id, field, val):
+    doc = collection.find_one_and_update({"UUID": uuid_id}, {"$set": {field: val}}, return_document = ReturnDocument.AFTER)
+    return doc
+
 def test_should_return_created_document():
     client = MongoClient("mongodb+srv://ikmclassof22:test@cluster0.vtg6m.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", tlsAllowInvalidCertificates=True)
     db = client['sample_mflix']
@@ -90,7 +95,7 @@ def test_should_update_a_document():
     saved_document = save_a_document(collection, document)
 
     updated_document = update_a_document(collection, uuid_id, "age", 25)
-    assert updated_document["age"] == 35
+    assert updated_document["age"] == 25
 
 
 
