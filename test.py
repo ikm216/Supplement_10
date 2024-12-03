@@ -34,6 +34,11 @@ def test_should_return_created_document():
     assert len(uuid_id) == 36
 
 def test_should_save_documet():
-    
+    client = MongoClient("mongodb+srv://ikmclassof22:test@cluster0.vtg6m.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", tlsAllowInvalidCertificates=True)
+    db = client['sample_mflix']
+    collection = db['users']
+    uuid_id, document = create_a_document()
+    saved_document = save_a_document(collection, document)
+    assert saved_document is not None
 
 
