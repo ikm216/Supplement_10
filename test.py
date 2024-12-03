@@ -49,6 +49,18 @@ def find_a_document_uuid(collection, uuid_id):
      return collection.find_one({"UUID": uuid_id})
 
 def update_a_document(collection, uuid_id, field, val):
+    """
+    Updates a specific field in a MongoDB document identified by UUID.
+
+    Args:
+        collection: MongoDB collection.
+        uuid_id: UUID of the document to update.
+        field: Field to update in the document.
+        val: New value for the field.
+
+    Returns:
+        The updated document.
+    """
     doc = collection.find_one_and_update({"UUID": uuid_id}, {"$set": {field: val}}, return_document = ReturnDocument.AFTER)
     return doc
 
