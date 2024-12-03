@@ -33,4 +33,7 @@ def test_should_return_created_document():
     assert isinstance(uuid_id, str)
     assert len(uuid_id) == 36
 
+def test_should_save_documet():
+    
+
 
