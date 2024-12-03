@@ -34,7 +34,8 @@ def save_a_document(collection, document):
     answer = collection.insert_one(document)
     return answer.inserted_id
 
-
+def find_a_document_uuid(collection, uuid_id):
+    return collection.find_one({"UUID": uuid_id})
 
 def test_should_return_created_document():
     client = MongoClient("mongodb+srv://ikmclassof22:test@cluster0.vtg6m.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", tlsAllowInvalidCertificates=True)
