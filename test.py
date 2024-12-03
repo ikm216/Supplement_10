@@ -35,7 +35,17 @@ def save_a_document(collection, document):
     return answer.inserted_id
 
 def find_a_document_uuid(collection, uuid_id):
-    return collection.find_one({"UUID": uuid_id})
+     """
+    Finds a document in the MongoDB collection by its UUID.
+
+    Args:
+        collection: MongoDB collection to search.
+        uuid_id: The UUID of the document to find.
+
+    Returns:
+        The found document or None if not found.
+    """
+     return collection.find_one({"UUID": uuid_id})
 
 def test_should_return_created_document():
     client = MongoClient("mongodb+srv://ikmclassof22:test@cluster0.vtg6m.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", tlsAllowInvalidCertificates=True)
@@ -70,5 +80,7 @@ def test_should_find_a_document():
     
     assert find_document is not None
     assert find_document["UUID"] == uuid_id
+
+def 
 
 
