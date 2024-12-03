@@ -81,6 +81,17 @@ def test_should_find_a_document():
     assert find_document is not None
     assert find_document["UUID"] == uuid_id
 
-def 
+def test_should_update_a_document():
+    client = MongoClient("mongodb+srv://ikmclassof22:test@cluster0.vtg6m.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", tlsAllowInvalidCertificates=True)
+    db = client['sample_mflix']
+    collection = db['users']
+
+    uuid_id, document = create_a_document()
+    saved_document = save_a_document(collection, document)
+
+    updated_document = update_a_document(collection, uuid_id, "age", 25)
+    assert updated_document["age"] == 35
+
+
 
 
