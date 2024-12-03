@@ -15,7 +15,7 @@ def create_a_document():
     document = {
         "UUID": str(uuid.uuid4()),
         "name": "John Doe",
-        "email": "john.doe@example.com",
+        "email": f"john.doe.{uuid.uuid4().hex[:8]}@example.com",
         "age": 30
     }
     return document["UUID"], document
@@ -33,6 +33,8 @@ def save_a_document(collection, document):
     """
     answer = collection.insert_one(document)
     return answer.inserted_id
+
+
 
 def test_should_return_created_document():
     client = MongoClient("mongodb+srv://ikmclassof22:test@cluster0.vtg6m.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", tlsAllowInvalidCertificates=True)
