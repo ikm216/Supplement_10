@@ -55,4 +55,17 @@ def test_should_save_documet():
     saved_document = save_a_document(collection, document)
     assert saved_document is not None
 
+def test_should_find_a_document():
+    client = MongoClient("mongodb+srv://ikmclassof22:test@cluster0.vtg6m.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", tlsAllowInvalidCertificates=True)
+    db = client['sample_mflix']
+    collection = db['users']
+
+    uuid_id, document = create_a_document()
+    saved_document = save_a_document(collection, document)
+
+    find_document = find_a_document_uuid(collection, uuid_id)
+    
+    assert find_document is not None
+    assert find_document["UUID"] == uuid_id
+
 
