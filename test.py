@@ -10,5 +10,11 @@ from test import(
 )
 
 def test_should_return_created_document():
-    uuid_id = create_a_document()
+    uuid_id, document = create_a_document()
     assert isinstance(uuid.UUID(uuid_id, version = 4), uuid.UUID)
+    assert document["UUID"] == uuid_id
+    assert "name" in document
+    assert "email" in document
+    assert "age" in document
+    assert isinstance(uuid_id, str)
+    assert len(uuid_id) == 36
