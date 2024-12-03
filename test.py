@@ -64,6 +64,10 @@ def update_a_document(collection, uuid_id, field, val):
     doc = collection.find_one_and_update({"UUID": uuid_id}, {"$set": {field: val}}, return_document = ReturnDocument.AFTER)
     return doc
 
+def delete_a_document(collection, uuid_id):
+    delt = collection.delete_one({"UUID": uuid_id})
+    return delt.deleted_count
+
 def test_should_return_created_document():
     client = MongoClient("mongodb+srv://ikmclassof22:test@cluster0.vtg6m.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", tlsAllowInvalidCertificates=True)
     db = client['sample_mflix']
