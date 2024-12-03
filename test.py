@@ -65,6 +65,16 @@ def update_a_document(collection, uuid_id, field, val):
     return doc
 
 def delete_a_document(collection, uuid_id):
+    """
+    Deletes a document in the MongoDB collection by its UUID.
+
+    Args:
+        collection: MongoDB collection to delete from.
+        uuid_id: The UUID of the document to delete.
+
+    Returns:
+        The number of deleted documents.
+    """
     delt = collection.delete_one({"UUID": uuid_id})
     return delt.deleted_count
 
